@@ -28,7 +28,7 @@ httpServer.listen(port, () => {
 io.on('connection', (socket) => {
     console.log(123);
     fs.watch('../web/dist',(eventType,filename)=>{
-        if(eventType === 'change'){
+        if(eventType === 'change' && filename){
             socket.emit('getMsg','server发出的消息')
             socket.on('send', data => {
                 console.log('客户端返回',data)
