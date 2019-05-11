@@ -2,10 +2,11 @@ import Vue from 'vue';
 import App from './App.vue';
 import io from 'socket.io-client'
 
-let socket  = io('ws://127.0.0.1:3000');
+let socket  = io();
 
 socket.on('getMsg',data=>{
     console.log(data)
+    window.location.reload();
     socket.emit('send','hello');
 })
 

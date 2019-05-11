@@ -29,11 +29,10 @@ io.on('connection', (socket) => {
     console.log(123);
     fs.watch('../web/dist',(eventType,filename)=>{
         if(eventType === 'change'){
-            socket.emit('getMsg','server发出的消息')
+            socket.emit('getMsg','server发出的消息');
             socket.on('send', data => {
-                console.log('客户端返回',data)
-
-            })
+                console.log('客户端返回',data);
+            });
         }
     })
 })
