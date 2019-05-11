@@ -1,13 +1,11 @@
 <template>
-    <div>{{msg}}</div>
+    <router-view></router-view>
 </template>
 
 <script>
 export default {
     data() {
-        return {
-            msg: 'lchat room'
-        }
+        return {}
     }
 }
 </script>

@@ -11,6 +11,9 @@ module.exports = {
         filename: '[name]-[hash:6].js',
         path: path.resolve(__dirname, '../dist')
     },
+    resolve: {
+        extensions: ['.js', '.vue', '.json']
+    },
     module: {
         rules: [
             {
