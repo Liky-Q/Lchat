@@ -6,7 +6,7 @@
 export default {
     data() {
         return {
-            msg: 'lchat room'
+            msg: 'lcha33tkld room'
         }
     }
 }
