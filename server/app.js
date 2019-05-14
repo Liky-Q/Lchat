@@ -13,9 +13,9 @@ let port = config.env.port; // 服务运行端口
 
 
 const httpServer = require('http').Server(app.callback());
-const io = require('socket.io')(httpServer);
+// const io = require('socket.io')(httpServer);
 
-
+const chat = require('socket.io')(httpServer);
 // 前端页面存放目录
 let webPath = '../web/dist';
 
@@ -25,14 +25,22 @@ app.use(static(path.join(__dirname, webPath)));
 httpServer.listen(port, () => {
     console.log('Lchat server is running at port', port);
 });
-io.on('connection', (socket) => {
-    console.log(123);
-    fs.watch('../web/dist',(eventType,filename)=>{
-        if(eventType === 'change'){
-            socket.emit('getMsg','server发出的消息');
-            socket.on('send', data => {
-                console.log('客户端返回',data);
-            });
-        }
-    })
-})
+
+// io.on('connection', (socket) => {
+//     console.log('server: receive connection.');
+//     fs.watch('../web/dist',(eventType,filename)=>{
+//         if(eventType === 'change'){
+//             socket.emit('getMsg','server发出的消息');
+//             socket.on('send', data => {
+//                 console.log('客户端返回', data);
+//             });
+//         }
+//     });
+// });
+chat.on('connection', socket => {
+    console.log('chat server: receive connection...');
+    socket.on('send', data => {
+        console.log('客户端返回：', data);
+    });
+    socket.emit('getMsg', 'from chat server...');
+});

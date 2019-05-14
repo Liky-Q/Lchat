@@ -19,6 +19,31 @@ module.exports = {
             {
                 test: /\.vue$/,
                 loader: 'vue-loader'
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            },
+            {
+                test: /\.(ttf|eot|woff|woff2|svg)$/,
+                use: ['file-loader']
+            },
+            {
+                test: /\.(jpg|png|gif|jpeg)$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 20000
+                    }
+                }]
+            },
+            {
+                test: /\.json$/,
+                use: ['json-loader']
             }
         ]
     },
