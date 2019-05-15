@@ -5,6 +5,7 @@
 const koa = require('koa');
 const path = require('path');
 const fs = require('fs');
+const controller = require('./controller');
 const static = require('koa-static');
 const config = require('./config.json');
 
@@ -16,11 +17,23 @@ const httpServer = require('http').Server(app.callback());
 // const io = require('socket.io')(httpServer);
 
 const chat = require('socket.io')(httpServer);
-// 前端页面存放目录
+
+app.use(async (ctx, next) => {
+    ctx.body = {
+        result: {
+            code: 200,
+            data: null,
+            message: 'OK'
+        }
+    };
+    await next();
+})
+
+// 静态页面存放目录
 let webPath = '../web/dist';
-
-
 app.use(static(path.join(__dirname, webPath)));
+// http请求路由
+app.use(controller());
 
 httpServer.listen(port, () => {
     console.log('Lchat server is running at port', port);
