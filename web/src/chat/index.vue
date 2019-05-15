@@ -1,5 +1,8 @@
 <template>
-    <h3>{{title}}</h3>
+    <div>
+        <h3>{{title}}</h3>
+        <el-button>确认</el-button>
+    </div>
 </template>
 
 <script>
