@@ -17,7 +17,7 @@ files.forEach(file => {
     if(file.startsWith('ctl-')) {
         let mapping = require(path.join(__dirname, file));
         for(url in mapping) {
-            console.log(1000, url.split(' '));
+            // console.log(1000, url.split(' '));
             let method = url.split(' ')[0];
             let path = url.split(' ')[1];
             switch(method) {
