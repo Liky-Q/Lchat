@@ -1,6 +1,13 @@
 {
     "env": {
         "port": 3000,
-        "api_version": "v1"
+        "api_version": "v1",
+        "database": {
+            "host": "47.103.36.219",
+            "port": 3306,
+            "database": "lchat_test",
+            "user": "root",
+            "password": "syt0514_"
+        }
     }
 }

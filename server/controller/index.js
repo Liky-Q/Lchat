@@ -7,9 +7,11 @@ const Router = require('koa-router');
 
 /**
  * 根据文件名称和目录获取controller信息
- * 过滤ctl开头的文件
+ * 过滤ctl开头的文件 ajax请求
+ * 过滤ws开头的文件 websocket通信
  */
 let files = fs.readdirSync(__dirname);
+let pathList = [];
 let router = new Router();
 files.forEach(file => {
     if(file.startsWith('ctl-')) {
@@ -34,8 +36,21 @@ files.forEach(file => {
             }
         }
     }
+    if(file.startsWith('ws-')) {
+        let mapping = require(path.join(__dirname, file));
+        for(url in mapping) {
+            pathList.push({
+                url: url,
+                func: mapping[url]
+            });
+        }
+    }
 });
 
-module.exports = () => {
-    return router.routes();
+module.exports = (ws) => {
+    if(!ws) {
+        return router.routes();
+    } else {
+        return pathList;
+    }
 }

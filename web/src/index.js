@@ -1,17 +1,11 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
-import io from 'socket.io-client';
 import UI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import '../static/index.css';
+import '../style/index.css';
+import '../style/style.scss';
 
-// let socket  = io();
-
-// socket.on('getMsg',data=>{
-//     // window.location.reload();
-//     socket.emit('send','hello');
-// });
 
 Vue.use(UI);
 
