@@ -18,6 +18,13 @@ const httpServer = require('http').Server(app.callback());
 
 const chat = require('socket.io')(httpServer);
 
+
+
+// 静态页面存放目录
+let webPath = '../web/dist';
+app.use(static(path.join(__dirname, webPath)));
+
+// http请求路由
 app.use(async (ctx, next) => {
     ctx.body = {
         result: {
@@ -27,12 +34,7 @@ app.use(async (ctx, next) => {
         }
     };
     await next();
-})
-
-// 静态页面存放目录
-let webPath = '../web/dist';
-app.use(static(path.join(__dirname, webPath)));
-// http请求路由
+});
 app.use(controller());
 
 httpServer.listen(port, () => {

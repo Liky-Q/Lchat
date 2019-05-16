@@ -9,17 +9,13 @@ const Router = require('koa-router');
  * 根据文件名称和目录获取controller信息
  * 过滤ctl开头的文件
  */
-// let mapping = {};
-
 let files = fs.readdirSync(__dirname);
 let router = new Router();
 files.forEach(file => {
     if(file.startsWith('ctl-')) {
         let mapping = require(path.join(__dirname, file));
         for(url in mapping) {
-            console.log(1000, url.split(' '));
-            let method = url.split(' ')[0];
-            let path = url.split(' ')[1];
+            let [method, path] = url.split(' ');
             switch(method) {
                 case 'GET':
                     router.get(path, mapping[url]);

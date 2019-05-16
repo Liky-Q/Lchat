@@ -4,5 +4,5 @@ let getUserInfo = async (ctx) => {
 }
 
 module.exports = {
-    'GET /v1/user/info': getUserInfo
+    'GET /user/info': getUserInfo
 }
